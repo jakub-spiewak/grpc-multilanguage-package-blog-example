@@ -83,7 +83,7 @@ function publish() {
   git fetch --all --tags
   version=$(git describe --tags)
   publish_gradle "$version"
-#  publish_npm "$version"
+  publish_npm "$version"
 }
 
 echo "Removing all previous generated files..."
