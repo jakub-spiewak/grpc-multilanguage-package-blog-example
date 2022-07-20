@@ -1,0 +1,12 @@
+.idea/
+
+generated/jvm/src/main/java/*
+generated/jvm/src/main/kotlin/*
+generated/web/src/generated/*
+
+*.lock
+*.log
+
+node_mudles
+
+build
