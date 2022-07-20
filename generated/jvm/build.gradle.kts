@@ -19,12 +19,15 @@ publishing {
     }
     publications {
         register<MavenPublication>("gpr") {
+            groupId = "com.jakubspiewak"
+            artifactId = "grpc"
+            version = (project.findProperty("version") ?: "unspecified") as String?
             from(components["java"])
         }
     }
 }
 
-group = "com.jakubspiewak"
+group = "com.jakubspiewak.grpc"
 version = project.findProperty("version") ?: "unspecified"
 
 repositories {

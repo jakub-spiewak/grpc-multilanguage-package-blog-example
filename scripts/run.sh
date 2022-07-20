@@ -14,7 +14,7 @@ KOTLIN_TARGET_PATH="$JVM_TARGET_ROOT_PATH/src/main/kotlin"
 WEB_TARGET_PATH="$WEB_TARGET_SRC_PATH/generated"
 
 WEB_TARGET_ENTRY_FILE_PATH="$WEB_TARGET_SRC_PATH/index.js"
-WEB_TARGET_DECLARATION_TYPES_FILE_PATH="$WEB_TARGET_SRC_PATH/index.d.js"
+WEB_TARGET_DECLARATION_TYPES_FILE_PATH="$WEB_TARGET_SRC_PATH/index.d.ts"
 
 function clear_dir() {
   rm -rf "$1" &>/dev/null
@@ -71,7 +71,6 @@ function generate_web_entry_files() {
 function publish_gradle() {
   version=$1
   gradle -p="$JVM_TARGET_ROOT_PATH" publish -Pversion="$version"
-  echo "publishing gradle..."
 }
 
 function publish_npm() {
@@ -84,7 +83,7 @@ function publish() {
   git fetch --all --tags
   version=$(git describe --tags)
   publish_gradle "$version"
-  publish_npm "$version"
+#  publish_npm "$version"
 }
 
 echo "Removing all previous generated files..."
