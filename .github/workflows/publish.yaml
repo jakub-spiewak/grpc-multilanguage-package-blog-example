@@ -1,0 +1,29 @@
+name: Publish gRPC generated code
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://npm.pkg.github.com'
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'liberica'
+          java-version: '17'
+      - run: ./scripts/install_protoc_if_not_exists.sh
+      - run: ./scripts/install_protoc_plugins_if_not_exists.sh
+      - run: ./scripts/run.sh
+        env:
+          USERNAME: jakub-spiewak
+          TOKEN: ${{ secrets.TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
